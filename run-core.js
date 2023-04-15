@@ -158,13 +158,13 @@ bot.on('login', () => {
    * 发送撤回消息请求
    */
   bot.sendMsg('测试撤回', ToUserName)
-     .then(res => {
-       // 需要取得待撤回消息的MsgID
-       return bot.revokeMsg(res.MsgID, ToUserName)
-     })
-     .catch(err => {
-       console.log(err)
-     })
+    .then(res => {
+      // 需要取得待撤回消息的MsgID
+      return bot.revokeMsg(res.MsgID, ToUserName)
+    })
+    .catch(err => {
+      console.log(err)
+    })
 })
 /**
  * 如何处理会话消息
@@ -286,6 +286,7 @@ bot.on('message', msg => {
     bot.verifyUser(msg.RecommendInfo.UserName, msg.RecommendInfo.Ticket)
       .then(res => {
         console.log(`通过了 ${bot.Contact.getDisplayName(msg.RecommendInfo)} 好友请求`)
+        //新增自动通过好友说明
         const anwser = '我是ChatGPT，是一个大型的语言模型，可以回答各种问题并提供帮助。你可以问我关于任何主题的问题，但我的回答可能需要一些时间来生成。请耐心等待我回答。'
         console.log(msg.RecommendInfo.UserName)
         bot.sendMsg(anwser, msg.RecommendInfo.UserName)
@@ -333,7 +334,7 @@ bot.on('message', msg => {
       request(options, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           var anwser = body.choices[0].message.content
-          anwser = anwser.replace('ChatGPT:','')
+          anwser = anwser.replace('ChatGPT:', '')
           bot.sendMsg(anwser, msg.FromUserName)
             .catch(err => {
               bot.emit('error', err)
