@@ -38,4 +38,4 @@ node_modules
 /.vscode
 /typings
 .idea/*
-.sync-data.js
+sync-data.js
