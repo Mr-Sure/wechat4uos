@@ -69,7 +69,7 @@ bot.on('error', err => {
   console.error('错误：', err)
 })
 /**
- * 如何发送消息
+ * 如何发送消息 
  */
 bot.on('login', () => {
   /**
@@ -347,7 +347,7 @@ bot.on('message', msg => {
   console.log(prompt)
   var dataString = {
     'prompt': prompt,
-    'userId': '#/chat/1681717760265',
+    'userId': msg.FromUserName,
     'network': false,
     'apikey': '',
     'system': '',
